@@ -62,12 +62,12 @@ while(True):
 #####################################################
 #TX_ RX LORA
 # #######################################################
-     if(p.count("rx")):
-         Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
-         print("RX_LORA")
-     if(p.count("tx")):
-         Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
-         print("TX_LORA")
+    if(p.count("rx")):
+        Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+        print("RX_LORA")
+    if(p.count("tx")):
+        Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+        print("TX_LORA")
 #####################################################
 #CPU
     print(get_cpuload())
