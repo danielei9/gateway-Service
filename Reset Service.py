@@ -6,7 +6,7 @@ import glob
 import serial
 #os.system("sudo reboot")
 #os.system("sudo shutdown now")
-import Modules.Serial
+import Modules.Serial_me
 import Modules.MQTT as mqtt
 baudrate  = 9600
 import psutil
@@ -18,15 +18,15 @@ comand = "ping google.es"
 # mqtt
 
 # SERIAL CONFIG#####################################################
-portConfig = Modules.Serial.SerialBegin(baudrate) 
+portConfig = Modules.Serial_me.SerialBegin(baudrate) 
 # Get cpuload #####################################################
 def get_cpuload():
     cpuload = psutil.cpu_percent(interval=1, percpu=False)
     return str(cpuload)
 #TEMP HUM#####################################################
 while(True):
-    if(Modules.Serial.SerialAvailable(portConfig)):
-        data = str(Modules.Serial.SerialRead(portConfig))
+    if(Modules.Serial_me.SerialAvailable(portConfig)):
+        data = str(Modules.Serial_me.SerialRead(portConfig))
         if(data.count("Temperature: ")):
             arr = data.split(' ')
             temp = arr[2].split('C')[0]
@@ -43,33 +43,33 @@ while(True):
         if(d.find ("4 received")):
             print("Internet connected")
             if(state == False):
-                Modules.Serial.SerialWrite(portConfig,"1_1")
+                Modules.Serial_me.SerialWrite(portConfig,"1_1")
                 state = True
                 print("SEND")
         else:
             print("NO Internet connected")
             print(state)
             if(state == True):
-                Modules.Serial.SerialWrite(portConfig,"1_0")
+                Modules.Serial_me.SerialWrite(portConfig,"1_0")
                 state = False
     except:
         print("NO Internet connected")
         if(state == True):
-                Modules.Serial.SerialWrite(portConfig,"1_0")
+                Modules.Serial_me.SerialWrite(portConfig,"1_0")
                 state = False
         pass
 #####################################################
 #TX_ RX LORA
 # #######################################################
 #     if(p.count("rx")):
-#         Modules.Serial.SerialWrite(portConfig,"3_RX") #RX
+#         Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
 #         print("RX_LORA")
 #     if(p.count("tx")):
-#         Modules.Serial.SerialWrite(portConfig,"3_TX") #TX
+#         Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
 #         print("TX_LORA")
 #####################################################
 #CPU
     print(get_cpuload())
     if(float(get_cpuload()) > 1 ):
-        Modules.Serial.SerialWrite(portConfig,"4_CPU")
+        Modules.Serial_me.SerialWrite(portConfig,"4_CPU")
 #####################################################
