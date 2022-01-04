@@ -1,6 +1,5 @@
 #RPI.GPIO as GPIO
 import os
-import sys
 import json
 import glob
 import serial
@@ -20,8 +19,7 @@ process = subprocess.Popen(
     command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
 ######################################################
 state = False
-#comand = "ping google.es"
-#p = str(subprocess.run("journalctl -u gesinen-sentilo-connector -f", stderr = subprocess.STDOUT,shell = True))
+
 # mqtt
 
 # SERIAL CONFIG#####################################################
@@ -68,21 +66,21 @@ while(True):
 #####################################################
 #TX_ RX LORA
 # #######################################################
-
     print("Creando Proceso Lora")
     command = "journalctl -u gesinen-sentilo-connector -f"
-    process = subprocess.Popen(
-    command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
-    out = process.stdout.read(1)
-    #if out == '' and process.poll() != None:
-        #break
-    if out != '':
-        sys.stdout.write(str(out))
+    line = process.stdout.readline()
+    if not line:
+        break
+  #the real code does filtering here
+    print("LORA:", line.rstrip())
+  
+    if(line != ''):
+        sys.stdout.write(str(line))
         sys.stdout.flush()
-        if(str(out).count("rx")):
+        if(str(line).count("rx")):
             Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
             print("RX_LORA")
-        if(str(out).count("tx")):
+        if(str(line).count("tx")):
             Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
             print("TX_LORA")
 #####################################################
