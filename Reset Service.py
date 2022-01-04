@@ -15,7 +15,7 @@ import subprocess
 state = False
 comand = "ping google.es"
 print("Creando Proceso Lora")
-p = str(subprocess.check_output(comand, shell=True))
+p = str(subprocess.check_output(comand, shell=True,stdout = subprocess.PIPE))
 #p = str(subprocess.check_output(comand, stdout = subprocess.PIPE, stderr = subprocess.DEVNULL,shell = True))
 # mqtt
 
