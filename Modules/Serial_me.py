@@ -28,7 +28,7 @@ def SerialBegin(baud):
    #     print("Reconnecting to Arduino NANO")
    #     time.sleep(5)
    #     pass
-    return portConfig
+        return portConfig
 def SerialWrite(portConfig,xData):
     try:
         portConfig.write(str(xData).encode())
