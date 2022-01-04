@@ -14,7 +14,8 @@ import subprocess
 ######################################################
 state = False
 comand = "ping google.es"
-# p = str(subprocess.check_output(comand, stdout = subprocess.PIPE, stderr = subprocess.STDOUT,shell = True))
+print("Creando Proceso Lora")
+p = str(subprocess.check_output(comand, stdout = subprocess.PIPE, stderr = subprocess.STDOUT,shell = True))
 # mqtt
 
 # SERIAL CONFIG#####################################################
@@ -61,12 +62,12 @@ while(True):
 #####################################################
 #TX_ RX LORA
 # #######################################################
-#     if(p.count("rx")):
-#         Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
-#         print("RX_LORA")
-#     if(p.count("tx")):
-#         Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
-#         print("TX_LORA")
+     if(p.count("rx")):
+         Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+         print("RX_LORA")
+     if(p.count("tx")):
+         Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+         print("TX_LORA")
 #####################################################
 #CPU
     print(get_cpuload())
