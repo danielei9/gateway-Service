@@ -79,10 +79,10 @@ while(True):
     if out != '':
         sys.stdout.write(str(out))
         sys.stdout.flush()
-        if(out.count("rx")):
+        if(str(out).count("rx")):
             Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
             print("RX_LORA")
-        if(out.count("tx")):
+        if(str(out).count("tx")):
             Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
             print("TX_LORA")
 #####################################################
