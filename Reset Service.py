@@ -77,7 +77,7 @@ while(True):
     #if out == '' and process.poll() != None:
         #break
     if out != '':
-        sys.stdout.write(out)
+        sys.stdout.write(str(out))
         sys.stdout.flush()
         if(out.count("rx")):
             Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
