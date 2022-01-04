@@ -13,9 +13,8 @@ import psutil
 import subprocess
 ######################################################
 state = False
-# comand = "journalctl -u gesinen-sentilo-connector -f"
-# p = subprocess.P(comand, stdout = subprocess.PIPE, stderr = subprocess.STDOUT,
-# #                        shell = True)
+comand = "ping google.es"
+# p = str(subprocess.check_output(comand, stdout = subprocess.PIPE, stderr = subprocess.STDOUT,shell = True))
 # mqtt
 
 # SERIAL CONFIG#####################################################
