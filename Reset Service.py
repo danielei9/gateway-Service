@@ -69,22 +69,22 @@ while(True):
 #TX_ RX LORA
 # #######################################################
 
-        print("Creando Proceso Lora")
-        command = "journalctl -u gesinen-sentilo-connector -f"
-        process = subprocess.Popen(
-        command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
-        out = process.stdout.read(1)
-        #if out == '' and process.poll() != None:
-            #break
-        if out != '':
-            sys.stdout.write(out)
-            sys.stdout.flush()
-            if(out.count("rx")):
-                Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
-                print("RX_LORA")
-            if(out.count("tx")):
-                Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
-                print("TX_LORA")
+    print("Creando Proceso Lora")
+    command = "journalctl -u gesinen-sentilo-connector -f"
+    process = subprocess.Popen(
+    command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
+    out = process.stdout.read(1)
+    #if out == '' and process.poll() != None:
+        #break
+    if out != '':
+        sys.stdout.write(out)
+        sys.stdout.flush()
+        if(out.count("rx")):
+            Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+            print("RX_LORA")
+        if(out.count("tx")):
+            Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+            print("TX_LORA")
 #####################################################
 #CPU
     print(get_cpuload())
