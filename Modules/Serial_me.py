@@ -3,9 +3,11 @@ import glob
 
 def serial_ports():
     ports = glob.glob('/dev/tty[A-Za-z]*')
+    print("buscando puertos")
     result = []
     for port in ports:
         try:
+            print(port)
             s = serial.Serial(port)
             s.close()
             result.append(port)
@@ -14,18 +16,18 @@ def serial_ports():
     print(result[0])
     return result
 def SerialBegin(baud):
-    try:
+   # try:
         print("Connecting to Arduino NANO")
         portConfig   = serial.Serial(port = serial_ports()[0],
                          baudrate = baud,
                          bytesize = serial.EIGHTBITS,
                          parity   = serial.PARITY_NONE,
                          stopbits = serial.STOPBITS_ONE)
-    except:
-        SerialBegin(baud)
-        print("Reconnecting to Arduino NANO")
-        time.sleep(5)
-        pass
+  #  except:
+  #      SerialBegin(baud)
+   #     print("Reconnecting to Arduino NANO")
+   #     time.sleep(5)
+   #     pass
     return portConfig
 def SerialWrite(portConfig,xData):
     try:
