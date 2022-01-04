@@ -11,11 +11,17 @@ import Modules.MQTT as mqtt
 baudrate  = 9600
 import psutil
 import subprocess
+import sys
+from subprocess import PIPE
+######################################################
+print("Creando Proceso Lora")
+command = "journalctl -u gesinen-sentilo-connector -f"
+process = subprocess.Popen(
+    command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
 ######################################################
 state = False
-comand = "ping google.es"
-print("Creando Proceso Lora")
-p = str(subprocess.run("journalctl -u gesinen-sentilo-connector -f", stderr = subprocess.STDOUT,shell = True))
+#comand = "ping google.es"
+#p = str(subprocess.run("journalctl -u gesinen-sentilo-connector -f", stderr = subprocess.STDOUT,shell = True))
 # mqtt
 
 # SERIAL CONFIG#####################################################
@@ -62,13 +68,18 @@ while(True):
 #####################################################
 #TX_ RX LORA
 # #######################################################
-    print(p)
-    if(p.count("rx")):
-        Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
-        print("RX_LORA")
-    if(p.count("tx")):
-        Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
-        print("TX_LORA")
+        out = process.stdout.read(1)
+        #if out == '' and process.poll() != None:
+            #break
+        if out != '':
+            sys.stdout.write(out)
+            sys.stdout.flush()
+            if(p.count("rx")):
+                Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+                print("RX_LORA")
+            if(p.count("tx")):
+                Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+                print("TX_LORA")
 #####################################################
 #CPU
     print(get_cpuload())
