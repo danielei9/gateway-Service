@@ -1,7 +1,7 @@
 import subprocess
 import sys
 from subprocess import PIPE
-command = "ping google.es"
+command = "journalctl -u gesinen-sentilo-connector -f"
 process = subprocess.Popen(
 command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
 while True:
