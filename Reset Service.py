@@ -66,22 +66,19 @@ while(True):
 #####################################################
 #TX_ RX LORA
 # #######################################################
-    print("Creando Proceso Lora")
-    command = "journalctl -u gesinen-sentilo-connector -f"
     line = process.stdout.readline()
     if not line:
+        print("not line")
         break
-  #the real code does filtering here
-    print("LORA:", line.rstrip())
-  
+    #print("LORA:", line.rstrip()
     if(line != ''):
-        if(str(line).count("### RECEIVED APPLICATION MESSAGE ###")):
-            Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+        if ("### RECEIVED APPLICATION MESSAGE ###" in str(line)) : #SI QUE VA 
+            #Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
             print("RX_LORA")
             sys.stdout.write(str(line))
             sys.stdout.flush()
-        if(str(line).count("tx")):
-            Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+        if(str(line).count("tx")): ### NO SE ENVIA POR JOURNAL NO VA TX  PERO CADA VEZ QUE RECIBE SI QUE VA 
+            #Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
             print("TX_LORA")
 #####################################################
 #CPU
