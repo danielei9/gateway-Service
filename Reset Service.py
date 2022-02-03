@@ -75,11 +75,11 @@ while(True):
     print("LORA:", line.rstrip())
   
     if(line != ''):
-        sys.stdout.write(str(line))
-        sys.stdout.flush()
-        if(str(line).count("rx")):
+        if(str(line).count("### RECEIVED APPLICATION MESSAGE ###")):
             Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
             print("RX_LORA")
+            sys.stdout.write(str(line))
+            sys.stdout.flush()
         if(str(line).count("tx")):
             Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
             print("TX_LORA")
