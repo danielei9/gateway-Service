@@ -11,7 +11,6 @@ print("Creando Proceso Lora")
 command = "journalctl -u gesinen-sentilo-connector -f"
 process = subprocess.Popen(
     command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
- print("Creando Proceso Lora")
 while(True):
 #####################################################
 #TX_ RX LORA
