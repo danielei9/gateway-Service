@@ -7,7 +7,7 @@ import os
 topic_general = ""
 def updateConfigMqtt(data,clt): 
     print("updating config MQTT")
-    if(not os.path.exists('configMQTT.json')):
+    if(not os.path.exists('/home/pi/gateway-Service/configMQTT.json')):
         with open('/home/pi/gateway-Service/configMQTT.json', 'w') as file:
             json.dump(data, file, indent=4)
             print("file:")
