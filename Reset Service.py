@@ -35,11 +35,17 @@ while(True):
         if(data.count("Temperature: ")):
             arr = data.split(' ')
             temp = arr[2].split('C')[0]
-            print("temp" + temp)
+            print("temp " + str(temp))
+        if(data.count("APAGAR_")):
+            print("APAGAR ")
+            os.system("sudo shutdown now")
+         if(data.count("RESET_")):
+            print("RESET_ ")
+            os.system("sudo reboot now")
         if(data.count("Humidity: ")):
             arr = data.split(' ') # arr[]
             hum = arr[4].split('%')[0]
-            print("hum" + hum)
+            print("hum " + str(hum))
             mqtt.sendHumTempMQTT(hum,temp)
 ######################################################
 ######################################################
