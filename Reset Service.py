@@ -15,8 +15,8 @@ from subprocess import PIPE
 ######################################################
 print("Creando Proceso Lora")
 command = "journalctl -u gesinen-sentilo-connector -f"
-# process = subprocess.Popen(
-#     command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
+process = subprocess.Popen(
+     command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
 ######################################################
 state = False
 
