@@ -79,12 +79,12 @@ while(True):
     #print("LORA:", line.rstrip()
     if(line != ''):
         if ("### RECEIVED APPLICATION MESSAGE ###" in str(line)) : #SI QUE VA 
-            #Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+            Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
             print("RX_LORA")
             sys.stdout.write(str(line))
             sys.stdout.flush()
         if(str(line).count("tx")): ### NO SE ENVIA POR JOURNAL NO VA TX  PERO CADA VEZ QUE RECIBE SI QUE VA 
-            #Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+            Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
             print("TX_LORA")
 #####################################################
 #CPU
