@@ -57,7 +57,7 @@ def sendHumTempMQTT(hum,temp):
       "Hum": hum
     }
     try:
-        with open('configMQTT.json', 'r') as file:
+        with open('/home/pi/gateway-Service/configMQTT.json', 'r') as file:
             configMqtt = json.load(file)
             configMqtt = json.loads(configMqtt)
             topic = configMqtt["topic"]
@@ -87,7 +87,7 @@ def createLoopMqttRecive(clt,username,password,broker,port,topic):
         print("subscribiendo... " +topic+"/config" )
         topic_general = topic
 
-        if(os.path.exists('configMQTT.json')):
+        if(os.path.exists('/home/pi/gateway-Service/configMQTT.json')):
             modelXconfig = {
                 "broker": str(broker),
                 "topic": str(topic),
