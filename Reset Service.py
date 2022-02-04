@@ -39,7 +39,7 @@ while(True):
         if(data.count("APAGAR_")):
             print("APAGAR ")
             os.system("sudo shutdown now")
-         if(data.count("RESET_")):
+        if(data.count("RESET_")):
             print("RESET_ ")
             os.system("sudo reboot now")
         if(data.count("Humidity: ")):
