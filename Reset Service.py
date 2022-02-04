@@ -15,8 +15,8 @@ from subprocess import PIPE
 ######################################################
 print("Creando Proceso Lora")
 command = "journalctl -u gesinen-sentilo-connector -f"
-process = subprocess.Popen(
-    command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
+# process = subprocess.Popen(
+#     command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell = True)
 ######################################################
 state = False
 
@@ -32,17 +32,18 @@ def get_cpuload():
 while(True):
     if(Modules.Serial_me.SerialAvailable(portConfig)):
         data = str(Modules.Serial_me.SerialRead(portConfig))
+        print(data)
         if(data.count("Temperature: ")):
             arr = data.split(' ')
             temp = arr[2].split('C')[0]
             print("temp " + str(temp))
-        if(data.count("APAGAR_")):
+        if("APAGAR_" in data):
             print("APAGAR ")
             os.system("sudo shutdown now")
-        if(data.count("RESET_")):
+        if("RESET_" in data):
             print("RESET_ ")
             os.system("sudo reboot now")
-        if(data.count("Humidity: ")):
+        if("humidity:" in data):
             arr = data.split(' ') # arr[]
             hum = arr[4].split('%')[0]
             print("hum " + str(hum))
@@ -72,22 +73,22 @@ while(True):
 #####################################################
 #TX_ RX LORA
 # #######################################################
-    line = process.stdout.readline()
-    if not line:
-        print("not line")
-        break
-    #print("LORA:", line.rstrip()
-    if(line != ''):
-        if ("### RECEIVED APPLICATION MESSAGE ###" in str(line)) : #SI QUE VA 
-            Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
-            print("RX_LORA")
-            sys.stdout.write(str(line))
-            sys.stdout.flush()
-        if(str(line).count("tx")): ### NO SE ENVIA POR JOURNAL NO VA TX  PERO CADA VEZ QUE RECIBE SI QUE VA 
-            Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
-            print("TX_LORA")
-#####################################################
-#CPU
+# #     line = process.stdout.readline()
+#     if not line:
+#         print("not line")
+#         break
+#     #print("LORA:", line.rstrip()
+#     if(line != ''):
+#         if ("### RECEIVED APPLICATION MESSAGE ###" in str(line)) : #SI QUE VA 
+#             Modules.Serial_me.SerialWrite(portConfig,"3_RX") #RX
+#             print("RX_LORA")
+#             sys.stdout.write(str(line))
+#             sys.stdout.flush()
+#         if(str(line).count("tx")): ### NO SE ENVIA POR JOURNAL NO VA TX  PERO CADA VEZ QUE RECIBE SI QUE VA 
+#             Modules.Serial_me.SerialWrite(portConfig,"3_TX") #TX
+#             print("TX_LORA")
+# #####################################################
+# #CPU
     print(get_cpuload())
     if(float(get_cpuload()) > 1 ):
         Modules.Serial_me.SerialWrite(portConfig,"4_CPU")
