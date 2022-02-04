@@ -113,7 +113,7 @@ def initMQTT():
     try:
         print("initMQTT")
         print("Open configMQTT.json")
-        with open('configMQTT.json', 'r') as file:
+        with open('/home/pi/gateway-Service/configMQTT.json', 'r') as file:
             configMqtt = json.load(file)
             print("LAST:"+configMqtt)
             return configMqtt
