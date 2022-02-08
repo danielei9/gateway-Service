@@ -20,7 +20,7 @@ ENVIAR A  TOPICO : gateway/cambiartopic2/config
 ```
 Recibir datos 
 SUBSCRIBE TO topic + /data 
-	ejemplo : gatewat/cambiartopic/data
+	ejemplo : gateway/cambiartopic/data
 
 
 /***************************************************************************************/
