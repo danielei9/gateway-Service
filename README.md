@@ -26,10 +26,10 @@ SUBSCRIBE TO topic + /data
 /***************************************************************************************/
 PARAMETROS DE INSTALACION DEL SERVICIO
 /***************************************************************************************/
-crontab -e  --> @reboot  /home/pi/gateway-Service/init-python.sh > /tmp/HUMTEMP_LEDS_SWITCH.log 2>&1
+ 1. Hacer git clone de este repositorio en /home/pi/
+ 2. Entrar en crontab -e  mediante una terminal, y escribir dentro del archivo (sin comillas):  "@reboot  /home/pi/gateway-Service/init-python.sh > /tmp/HUMTEMP_LEDS_SWITCH.log 2>&1"
+ 3. dar permisos de ejecucion mediante terminal con:  chmod +x /home/pi/gateway-Service/init-python.sh 
+ 4. podemos ver el log al reinicar   --> /tmp/HUMTEMP_LEDS_SWITCH.log
 
-LOG EN   --> /tmp/HUMTEMP_LEDS_SWITCH.log
-
-dar permisos de ejecucion chmod +x /home/pi/gateway-Service/init-python.sh 
 
 /home/pi/gateway-Service/init-python.sh  -->  python3 /home/pi/gateway-Service/Reset\ Service.py
