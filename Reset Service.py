@@ -43,7 +43,7 @@ while(True):
         if("RESET_" in data):
             print("RESET_ ")
             os.system("sudo reboot now")
-        if("humidity:" in data):
+        if("Humidity:" in data):
             arr = data.split(' ') # arr[]
             hum = arr[4].split('%')[0]
             print("hum " + str(hum))
